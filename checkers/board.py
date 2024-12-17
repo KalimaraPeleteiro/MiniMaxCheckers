@@ -46,3 +46,15 @@ class Board:
                 piece = self.board[row][col]
                 if piece != 0:
                     piece.draw(window)
+    
+
+    def move(self, piece, row, col):
+        self.board[piece.row][piece.col], self.board[row][col] = self.board[row][col], self.board[piece.row][piece.col]
+        piece.move(row, col)
+
+        if row == ROWS or row == 0:
+            piece.make_king()
+            if piece.color == WHITE_PIECE:
+                self.white_kings += 1
+            else:
+                self.red_kings += 1

@@ -34,6 +34,13 @@ class Piece:
     def draw(self, window):
         radius = SQUARE_SIZE // 2 - self.PADDING 
         pygame.draw.circle(window, self.color, (self.x, self.y), radius)
+        if self.king:
+            window.blit(CROWN, (self.x - CROWN.get_width()//2, self.y - CROWN.get_height()//2))
 
     def __repr__(self) -> str:
         return str(self.color)
+    
+    def move(self, row, col):
+        self.row = row
+        self.col = col
+        self.calculate_position()

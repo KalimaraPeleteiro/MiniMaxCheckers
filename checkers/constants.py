@@ -18,3 +18,6 @@ BLACK_PIECE = (82, 58, 58)
 BLACK_BOARD_SQUARE = (186, 103, 70)
 WHITE_BOARD_SQUARE = (253, 227, 185)
 
+
+# Assets
+CROWN = pygame.transform.scale(pygame.image.load("assets/crown.png"), (44, 25))
