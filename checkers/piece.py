@@ -20,6 +20,7 @@ class Piece:
 
         self.x = 0
         self.y = 0
+        self.calculate_position()
 
 
     # Utilizado para centralizar a peça no quadrado em que está.
@@ -32,7 +33,6 @@ class Piece:
 
     def draw(self, window):
         radius = SQUARE_SIZE // 2 - self.PADDING 
-        pygame.draw.circle(window, GREY, (self.x, self.y), radius + self.OUTLINE)
         pygame.draw.circle(window, self.color, (self.x, self.y), radius)
 
     def __repr__(self) -> str:
