@@ -7,8 +7,8 @@ from .piece import Piece
 class Board:
     def __init__(self) -> None:
         self.board = []
-        self.red_left = self.white_left = 12        # Número Inicial de Peças
-        self.red_kings = self.white_kings = 0      # Número Inicial de Damas (Em inglês, é chamado de 'King')
+        self.black_left = self.white_left = 12        # Número Inicial de Peças
+        self.black_kings = self.white_kings = 0      # Número Inicial de Damas (Em inglês, é chamado de 'King')
         self.create_board()
 
 
@@ -29,9 +29,9 @@ class Board:
             for col in range(COLS):
                 if col % 2 == ((row + 1) % 2):
                     if row < 3:
-                        self.board[row].append(Piece(row, col, WHITE_PIECE))
-                    elif row > 4:
                         self.board[row].append(Piece(row, col, BLACK_PIECE))
+                    elif row > 4:
+                        self.board[row].append(Piece(row, col, WHITE_PIECE))
                     else:
                         self.board[row].append(0)
                 else:
@@ -57,4 +57,39 @@ class Board:
             if piece.color == WHITE_PIECE:
                 self.white_kings += 1
             else:
-                self.red_kings += 1
+                self.black_kings += 1
+    
+
+    def get_piece(self, row, col):
+        return self.board[row][col]
+    
+
+    def get_valid_moves(self, piece):
+        moves = {}
+        left = piece.col - 1
+        right = piece.col + 1
+
+        if piece.color == WHITE_PIECE or piece.king:
+            pass
+
+        if piece.color == BLACK_PIECE or piece.king:
+            pass
+
+    
+    def _traverse_left(self, start, stop, step, color, left, skipped=[]):
+        moves = {}
+        last = []
+
+        for r in range(start, stop, step):
+            if left < 0:
+                break
+            
+            current = self.board.get_piece(r, left)
+            if current == 0:
+                if skipped and not last:
+                    break
+            left -= 1
+
+
+    def _traverse_right(self, start, stop, step, color, right, skipped=[]):
+        pass

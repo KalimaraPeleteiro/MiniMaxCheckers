@@ -1,16 +1,25 @@
 import pygame
 
 from checkers.board import Board
-from checkers.constants import WIDTH, HEIGHT, FPS
+from checkers.game import Game
+from checkers.constants import *
 
 
 WINDOW = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Damas")
 
+
+def get_row_col_from_mouse(pos):
+    x, y = pos
+    row = y // SQUARE_SIZE
+    col = x // SQUARE_SIZE
+    return row, col
+
+
 def main():
     run = True
     clock = pygame.time.Clock()
-    board = Board()
+    game = Game(WINDOW)
 
     while run:
         clock.tick(FPS)
@@ -19,10 +28,11 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
             if event.type == pygame.MOUSEBUTTONDOWN:
-                pass
+                pos = pygame.mouse.get_pos()
+                row, col = get_row_col_from_mouse(pos)
 
-        board.draw_board(WINDOW)
-        pygame.display.update()
+
+        game.update()
 
     pygame.quit()
 

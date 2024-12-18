@@ -13,11 +13,6 @@ class Piece:
         self.color = color
         self.king = False       # Damas no jogo em inglês é 'King'
 
-        if self.color == WHITE_PIECE:
-            self.direction = -1
-        else:
-            self.direction = 1
-
         self.x = 0
         self.y = 0
         self.calculate_position()
